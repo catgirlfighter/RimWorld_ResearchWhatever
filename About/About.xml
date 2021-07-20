@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Research Whatever</name>
+	<author>avilmask</author>
+	<supportedVersions>
+		<li>1.2</li>
+		<li>1.3</li>
+	</supportedVersions>
+	<url>none</url>
+	<packageId>avilmask.ResearchWhatever</packageId>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<description>When research subject is not selected, pawns just choose the cheapest one on their own. This option is accessible from research bench.</description>
+</ModMetaData>
