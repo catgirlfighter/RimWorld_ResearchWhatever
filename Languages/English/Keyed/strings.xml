@@ -4,5 +4,5 @@
 	<CommandResearchWhateverToggleDescActive>Active - colonists will choose something to research on their own.</CommandResearchWhateverToggleDescActive>
 	<CommandResearchWhateverToggleDescInactive>Inactive - colonists will not choose something to research on their own.</CommandResearchWhateverToggleDescInactive>
 	<ResearchWhateverNothingLeftToResearch>{0} has nothing left to research</ResearchWhateverNothingLeftToResearch>
-	<ResearchWhateverNewResearch>{0} have started a new research: {1}</ResearchWhateverNewResearch>
+	<ResearchWhateverNewResearch>{0} has started a new research: {1}</ResearchWhateverNewResearch>
 </LanguageData>
