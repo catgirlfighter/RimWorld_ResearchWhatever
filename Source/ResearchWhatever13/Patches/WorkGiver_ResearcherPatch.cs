@@ -13,7 +13,6 @@ namespace ResearchWhatever.Patches
         static bool Prefix(ref bool __result)
         {
             __result = false;
-            //Log.Message($"ShouldSkip={__result}");
             return false;
         }
     }

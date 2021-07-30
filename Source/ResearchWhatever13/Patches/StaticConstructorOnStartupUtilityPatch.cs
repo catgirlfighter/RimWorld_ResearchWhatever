@@ -13,7 +13,7 @@ namespace ResearchWhatever
     {
         //[HarmonyPatch(typeof(StaticConstructorOnStartupUtility), "CallAll")]
         [HarmonyPatch]
-        static class StaticConstructorOnStartupUtility_CallAll_NonUnoPinataPatch
+        static class StaticConstructorOnStartupUtility_CallAll_ResearchWhateverPatch
         {
             internal static MethodBase TargetMethod()
             {
@@ -33,13 +33,16 @@ namespace ResearchWhatever
             {
                 List<ThingDef> list = new List<ThingDef>(
                     from x in DefDatabase<ThingDef>.AllDefsListForReading
-                    where x.thingClass == typeof(Building_ResearchBench) || x.thingClass.IsSubclassOf(typeof(Building_ResearchBench))
+                    where x.thingClass == typeof(Building_ResearchBench) || x.thingClass != null && x.thingClass.IsSubclassOf(typeof(Building_ResearchBench))
                     select x);
 
-                foreach (var thing in list)
-                {
-                    thing?.comps.Add(new CompProperties(typeof(ResearchWhateverComp)));
-                }
+                if (list.NullOrEmpty())
+                    return;
+                else
+                    foreach (var thing in list)
+                    {
+                        thing?.comps?.Add(new CompProperties(typeof(ResearchWhateverComp)));
+                    }
             }
         }
     }
