@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System.Reflection;
 using Verse;
+using RimWorld;
 
 namespace ResearchWhatever
 {

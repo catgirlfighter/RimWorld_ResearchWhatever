@@ -1,5 +1,8 @@
-﻿1.0.1
-- did stuff that maybe could help somebody;
+﻿1.0.2
+- option gets disabled if building is not of player faction;
+
+1.0.1
+- did stuff that maybe could help somebody... to not have error messages;
 
 1.0.0.1
 - grammar;

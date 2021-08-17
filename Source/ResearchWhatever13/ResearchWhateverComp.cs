@@ -8,18 +8,8 @@ namespace ResearchWhatever
     {
         public bool Active
         {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                if (value == active)
-                {
-                    return;
-                }
-                this.active = value;
-            }
+            get { return parent?.Faction == Faction.OfPlayer && active; }
+            set { if (value == active) return; active = value; }
         }
 
         public override void PostExposeData()
@@ -29,16 +19,19 @@ namespace ResearchWhatever
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
+            if (parent?.Faction != Faction.OfPlayer)
+                yield break;
+            //
             Command_Toggle command_Toggle = new Command_Toggle();
             command_Toggle.hotKey = KeyBindingDefOf.Command_TogglePower;
             command_Toggle.defaultLabel = "CommandResearchWhateverToggleLabel".Translate();
             command_Toggle.icon = TexCommand.OpenLinkedQuestTex;
-            command_Toggle.isActive = (() => this.Active);
+            command_Toggle.isActive = (() => active);
             command_Toggle.toggleAction = delegate ()
             {
-                this.Active = !this.Active;
+                Active = !active;
             };
-            if (this.Active)
+            if (Active)
             {
                 command_Toggle.defaultDesc = "CommandResearchWhateverToggleDescActive".Translate();
             }
