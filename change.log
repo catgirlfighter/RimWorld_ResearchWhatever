@@ -1,4 +1,8 @@
-﻿1.0.2
+﻿1.0.3
+- added an extension to make it possible to ignore some research or prioritize last;
+- made so repeatable research from firefoxpdm.ResearchableStatUpgrades us always bottom priority;
+
+1.0.2
 - option gets disabled if building is not of player faction;
 
 1.0.1

@@ -45,7 +45,6 @@ namespace ResearchWhatever.Patches
 
         static void Prefix(Pawn pawn, Thing t, bool forced)
         {
-            
             ResearchProjectDef currentProj = Find.ResearchManager.currentProj;
             if (currentProj != null) return;
             Building_ResearchBench bench = t as Building_ResearchBench;
@@ -60,8 +59,9 @@ namespace ResearchWhatever.Patches
                 where Find.Storyteller.difficulty.AllowedBy(x.hideWhen)
                 && !x.IsFinished
                 && x.TechprintRequirementMet
-                && x.PrerequisitesCompleted 
+                && x.PrerequisitesCompleted
                 && (x.requiredResearchBuilding == null || x.requiredResearchBuilding == bench.def && bench.hasFacilities(x.requiredResearchFacilities))
+                && x.GetModExtension<ResearchWhateverExtansion>()?.ignore != true
                 select x);
 
             if (projects.NullOrEmpty())
@@ -70,7 +70,7 @@ namespace ResearchWhatever.Patches
                 Messages.Message("ResearchWhateverNothingLeftToResearch".Translate(bench.Label).CapitalizeFirst(), new TargetInfo(bench.Position, bench.Map, false), MessageTypeDefOf.NeutralEvent);
                 return;
             }
-            projects.SortBy(x => x.CostApparent);
+            projects.SortBy(x => x.GetModExtension<ResearchWhateverExtansion>()?.lowPriority == true ? 100000000f + x.CostApparent : x.CostApparent);
 
             ResearchProjectDef def = projects.First();
             projects.TryRandomElementByWeight(x => x.CostApparent == def.CostApparent ? 1f : 0f, out def);

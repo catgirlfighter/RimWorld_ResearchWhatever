@@ -67,6 +67,7 @@
     <Compile Include="ResearchWhatever.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResearchWhateverComp.cs" />
+    <Compile Include="ResearchWhateverExtansion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
