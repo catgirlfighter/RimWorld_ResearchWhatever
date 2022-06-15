@@ -13,7 +13,7 @@ namespace ResearchWhatever
     {
         //[HarmonyPatch(typeof(StaticConstructorOnStartupUtility), "CallAll")]
         [HarmonyPatch]
-        static class StaticConstructorOnStartupUtility_CallAll_ResearchWhateverPatch
+        public static class StaticConstructorOnStartupUtility_CallAll_ResearchWhateverPatch
         {
             internal static MethodBase TargetMethod()
             {
@@ -29,7 +29,7 @@ namespace ResearchWhatever
                 return LCallAll;
             }
             //
-            static void Postfix()
+            public static void Postfix()
             {
                 List<ThingDef> list = new List<ThingDef>(
                     from x in DefDatabase<ThingDef>.AllDefsListForReading

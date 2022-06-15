@@ -8,9 +8,9 @@ using Verse.Sound;
 namespace ResearchWhatever.Patches
 {
     [HarmonyPatch(typeof(WorkGiver_Researcher), "ShouldSkip")]
-    static class WorkGiver_Researcher_ShouldSkip_ResearchWhateverPatch
+    public static class WorkGiver_Researcher_ShouldSkip_ResearchWhateverPatch
     {
-        static bool Prefix(ref bool __result)
+        public static bool Prefix(ref bool __result)
         {
             __result = false;
             return false;
@@ -18,9 +18,9 @@ namespace ResearchWhatever.Patches
     }
 
     [HarmonyPatch(typeof(WorkGiver_Researcher), "PotentialWorkThingRequest", MethodType.Getter)]
-    static class WorkGiver_PotentialWorkThingRequest_ResearchWhateverPatch
+    public static class WorkGiver_PotentialWorkThingRequest_ResearchWhateverPatch
     {
-        static bool Prefix(ref ThingRequest __result)
+        public static bool Prefix(ref ThingRequest __result)
         {
             __result = ThingRequest.ForGroup(ThingRequestGroup.ResearchBench);
             return false;
@@ -28,7 +28,7 @@ namespace ResearchWhatever.Patches
     }
 
     [HarmonyPatch(typeof(WorkGiver_Researcher), "HasJobOnThing")]
-    static class WorkGiver_Researcher_HasJobOnThing_ResearchWhateverPatch
+    public static class WorkGiver_Researcher_HasJobOnThing_ResearchWhateverPatch
     {
         private static bool hasFacilities(this Building_ResearchBench bench, List<ThingDef> requiredFacilities)
         {
@@ -43,7 +43,7 @@ namespace ResearchWhatever.Patches
             return true;
         }
 
-        static void Prefix(Pawn pawn, Thing t, bool forced)
+        public static void Prefix(Pawn pawn, Thing t, bool forced)
         {
             ResearchProjectDef currentProj = Find.ResearchManager.currentProj;
             if (currentProj != null) return;

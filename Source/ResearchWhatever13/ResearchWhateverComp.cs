@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 using RimWorld;
+using UnityEngine;
 
 namespace ResearchWhatever
 {
@@ -29,7 +30,33 @@ namespace ResearchWhatever
             command_Toggle.isActive = (() => active);
             command_Toggle.toggleAction = delegate ()
             {
-                Active = !active;
+                if (Event.current.button == 0)
+                    Active = !Active;
+                else if (Event.current.button == 1)
+                {
+                    var comp = Current.Game.GetComponent<ResearchWhateverGameComp>();
+                    //var lable = Mute ? "CommandResearchWhateverToggleMute".Translate().CapitalizeFirst() : "CommandResearchWhateverToggleUnmute".Translate().CapitalizeFirst();
+                    List<FloatMenuOption> list = new List<FloatMenuOption>();
+                    list.Add(new FloatMenuOption("CommandResearchWhateverToggleDefault".Translate().CapitalizeFirst(), delegate ()
+                    {
+                        comp.NotifyMode = ResearchWhateverNotifyMode.rwnDefault;
+                    }));
+                    list.Add(new FloatMenuOption("CommandResearchWhateverToggleLetter".Translate().CapitalizeFirst(), delegate ()
+                    {
+                        comp.NotifyMode = ResearchWhateverNotifyMode.rwnLetter;
+                    }));
+                    list.Add(new FloatMenuOption("CommandResearchWhateverToggleNotice".Translate().CapitalizeFirst(), delegate ()
+                    {
+                        comp.NotifyMode = ResearchWhateverNotifyMode.rwnNotice;
+                    }));
+                    list.Add(new FloatMenuOption("CommandResearchWhateverToggleMute".Translate().CapitalizeFirst(), delegate ()
+                    {
+                        comp.NotifyMode = ResearchWhateverNotifyMode.rwnMute;
+                    }));
+                    FloatMenu floatMenu = new FloatMenu(list);
+                    floatMenu.vanishIfMouseDistant = true;
+                    Find.WindowStack.Add(floatMenu);
+                }
             };
             if (Active)
             {
@@ -45,5 +72,5 @@ namespace ResearchWhatever
 
         private bool active = true;
     }
-    
+
 }

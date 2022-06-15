@@ -1,6 +1,9 @@
-﻿1.0.3
+﻿1.0.4
+- now you can r-click on the toggle to mute completion notifications;
+
+1.0.3
 - added an extension to make it possible to ignore some research or prioritize last;
-- made so repeatable research from firefoxpdm.ResearchableStatUpgrades us always bottom priority;
+- made so repeatable research from firefoxpdm.ResearchableStatUpgrades is always bottom priority;
 
 1.0.2
 - option gets disabled if building is not of player faction;
