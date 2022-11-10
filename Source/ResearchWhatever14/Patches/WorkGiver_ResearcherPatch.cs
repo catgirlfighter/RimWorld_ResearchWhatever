@@ -43,7 +43,19 @@ namespace ResearchWhatever.Patches
             return true;
         }
 
-        public static void Prefix(Pawn pawn, Thing t, bool forced)
+        private static bool CanBePicked(this ResearchProjectDef research, Building_ResearchBench bench)
+        {
+            return Find.Storyteller.difficulty.AllowedBy(research.hideWhen)
+                && !research.IsFinished
+                && research.PrerequisitesCompleted
+                && research.TechprintRequirementMet
+                && research.PlayerMechanitorRequirementMet
+                && research.StudiedThingsRequirementsMet
+                && (research.requiredResearchBuilding == null || research.requiredResearchBuilding == bench.def && bench.hasFacilities(research.requiredResearchFacilities))
+                && research.GetModExtension<ResearchWhateverExtansion>()?.ignore != true;
+        }
+
+        internal static void Prefix(Pawn pawn, Thing t, bool forced)
         {
             ResearchProjectDef currentProj = Find.ResearchManager.currentProj;
             if (currentProj != null) return;
@@ -56,12 +68,7 @@ namespace ResearchWhatever.Patches
 
             List<ResearchProjectDef> projects = new List<ResearchProjectDef>(
                 from x in DefDatabase<ResearchProjectDef>.AllDefsListForReading
-                where Find.Storyteller.difficulty.AllowedBy(x.hideWhen)
-                && !x.IsFinished
-                && x.TechprintRequirementMet
-                && x.PrerequisitesCompleted
-                && (x.requiredResearchBuilding == null || x.requiredResearchBuilding == bench.def && bench.hasFacilities(x.requiredResearchFacilities))
-                && x.GetModExtension<ResearchWhateverExtansion>()?.ignore != true
+                where x.CanBePicked(bench)
                 select x);
 
             if (projects.NullOrEmpty())
