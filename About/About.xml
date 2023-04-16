@@ -15,5 +15,8 @@
 			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 		</li>
 	</modDependencies>
+	<loadBefore>
+		<li>PeteTimesSix.ResearchReinvented</li>
+	</loadBefore>
 	<description>When research subject is not selected, pawns just choose the cheapest one on their own. This option is accessible from research bench.</description>
 </ModMetaData>
