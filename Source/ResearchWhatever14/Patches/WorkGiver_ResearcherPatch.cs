@@ -46,11 +46,7 @@ namespace ResearchWhatever.Patches
         private static bool CanBePicked(this ResearchProjectDef research, Building_ResearchBench bench)
         {
             return Find.Storyteller.difficulty.AllowedBy(research.hideWhen)
-                && !research.IsFinished
-                && research.PrerequisitesCompleted
-                && research.TechprintRequirementMet
-                && research.PlayerMechanitorRequirementMet
-                && research.StudiedThingsRequirementsMet
+                && research.CanStartNow
                 && (research.requiredResearchBuilding == null || research.requiredResearchBuilding == bench.def && bench.hasFacilities(research.requiredResearchFacilities))
                 && research.GetModExtension<ResearchWhateverExtansion>()?.ignore != true;
         }
