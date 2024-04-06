@@ -1,5 +1,8 @@
-﻿1.0.7
-- made a minor change that probably should improve cases when mods add their own requirements for research.
+﻿1.1.0
+- 1.5 be like;
+
+1.0.7
+- made a minor change that probably should improve cases when mods add their own requirements for research (thanks @Taranchuk);
 
 other
 - little hint to put this mod before "research re-invenred" mod.

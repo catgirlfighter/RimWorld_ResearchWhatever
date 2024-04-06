@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest"><xpath>Defs/ResearchProjectDef[defName="StackingRepeatable"]/modExtensions</xpath></li>	
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ResearchProjectDef[defName="StackingRepeatable"]/modExtensions</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<!-- <ignore>true</ignore> -->
+						<lowPriority>true</lowPriority>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest"><xpath>Defs/ResearchProjectDef[defName="ProductivityRepeatable"]/modExtensions</xpath></li>	
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ResearchProjectDef[defName="ProductivityRepeatable"]/modExtensions</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<lowPriority>true</lowPriority>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
