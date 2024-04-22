@@ -8,9 +8,9 @@ using Verse.Sound;
 namespace ResearchWhatever.Patches
 {
     [HarmonyPatch(typeof(ResearchManager), "FinishProject")]
-    public static class ResearchManager_FinishProject_ResearchWhateverPatch
+    static class ResearchManager_FinishProject_ResearchWhateverPatch
     {
-        public static void Prefix(ResearchManager __instance, ref bool doCompletionDialog)
+        internal static void Prefix(ResearchProjectDef proj, ref bool doCompletionDialog)
         {
             if (doCompletionDialog)
             {
@@ -20,18 +20,18 @@ namespace ResearchWhatever.Patches
 
                 doCompletionDialog = false;
 
-                var currentProj = __instance.GetProject();
+                //var currentProj = __instance.GetProject();
                 switch (comp.NotifyMode)
                 {
-                    case ResearchWhateverNotifyMode.rwnLetter: 
-                        Find.LetterStack.ReceiveLetter("ResearchFinished".Translate(currentProj.LabelCap), currentProj.description, LetterDefOf.PositiveEvent, null, null, null, null, null);
+                    case ResearchWhateverNotifyMode.rwnLetter:
+                        Find.LetterStack.ReceiveLetter("ResearchFinished".Translate(proj.LabelCap), proj.description, LetterDefOf.PositiveEvent, null, null, null, null, null);
                         break;
                     case ResearchWhateverNotifyMode.rwnNotice:
-                        Messages.Message("ResearchFinished".Translate(currentProj.LabelCap).CapitalizeFirst(), MessageTypeDefOf.SilentInput);
+                        Messages.Message("ResearchFinished".Translate(proj.LabelCap).CapitalizeFirst(), MessageTypeDefOf.SilentInput);
                         break;
                     default:
                         break;
-                } 
+                }
             }
         }
     }

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Patches\ResearchManagerPatch.cs" />
     <Compile Include="Patches\StaticConstructorOnStartupUtilityPatch.cs" />
+    <Compile Include="Patches\StudyManagerPatch.cs" />
     <Compile Include="Patches\WorkGiver_ResearcherPatch.cs" />
     <Compile Include="ResearchWhatever.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
