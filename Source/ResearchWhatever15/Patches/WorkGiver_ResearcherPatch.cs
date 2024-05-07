@@ -73,7 +73,7 @@ namespace ResearchWhatever.Patches
                 Messages.Message("ResearchWhateverNothingLeftToResearch".Translate(bench.Label).CapitalizeFirst(), new TargetInfo(bench.Position, bench.Map, false), MessageTypeDefOf.NeutralEvent);
                 return;
             }
-            projects.SortBy(x => x.GetModExtension<ResearchWhateverExtansion>()?.lowPriority == true ? 100000000f + x.CostApparent : x.CostApparent);
+            projects.SortBy(x => x.GetModExtension<ResearchWhateverExtansion>()?.lowPriority == true ? 100000000f + x.CostApparent - x.ProgressApparent : x.CostApparent - x.ProgressApparent);
 
             ResearchProjectDef def = projects.First();
             projects.TryRandomElementByWeight(x => x.CostApparent == def.CostApparent ? 1f : 0f, out def);

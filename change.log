@@ -1,4 +1,9 @@
-﻿1.1.2
+﻿1.1.3
+- mod now automatically picks CHEAPEST anomaly research;
+- if anomly is fully studied and nothing left to research, study will be automatically toggled off;
+- cheapest project now takes into account already made progress;
+
+1.1.2
 - added sound notification when new anomaly project picked;
 
 1.1.1

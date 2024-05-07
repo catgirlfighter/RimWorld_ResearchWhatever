@@ -37,19 +37,36 @@ namespace ResearchWhatever.Patches
             if (proj != null)
                 return;
 
-            proj = DefDatabase<ResearchProjectDef>.AllDefsListForReading.FirstOrDefault((ResearchProjectDef x) => x.CanStartNow && x.knowledgeCategory == knowledgeCategory);
-            if (proj == null && knowledgeCategory.overflowCategory != null)
-                proj = DefDatabase<ResearchProjectDef>.AllDefsListForReading.FirstOrDefault((ResearchProjectDef x) => x.CanStartNow && x.knowledgeCategory == knowledgeCategory.overflowCategory);
-
-            if (proj == null)
+            var projs = DefDatabase<ResearchProjectDef>.AllDefsListForReading.Where((ResearchProjectDef x) => x.CanStartNow && x.knowledgeCategory == knowledgeCategory).ToList();
+            if (projs.NullOrEmpty() && knowledgeCategory.overflowCategory != null)
+                projs = DefDatabase<ResearchProjectDef>.AllDefsListForReading.Where((ResearchProjectDef x) => x.CanStartNow && x.knowledgeCategory == knowledgeCategory.overflowCategory).ToList();
+            
+            if (projs.NullOrEmpty())
             {
-                //CompStudiable compStudiable = studiedThing.TryGetComp<CompStudiable>();
-                //if (compStudiable == null)
-                //    return;
+                CompStudiable compStudiable = studiedThing.TryGetComp<CompStudiable>();
+                CompHoldingPlatformTarget compHoldingPlatformTarget = studiedThing.TryGetComp<CompHoldingPlatformTarget>();
+
+                bool b = false;
+                if (compStudiable != null && compStudiable.Completed)
+                {
+                    compStudiable.studyEnabled = false;
+                    b = true;
+                }
                 //
-                //if (compStudiable.Completed) ;
+                if (compHoldingPlatformTarget != null)
+                {
+                    compHoldingPlatformTarget.containmentMode = EntityContainmentMode.MaintainOnly;
+                    b = b || compStudiable != null;
+                }
+
+                if (b) Messages.Message("ResearchWhateverNothingLeftToResearch".Translate(studiedThing.Label).CapitalizeFirst(), new TargetInfo(studiedThing.PositionHeld, studiedThing.MapHeld, false), MessageTypeDefOf.NeutralEvent);
+
                 return;
             }
+            projs.SortBy(x => x.CostApparent - x.ProgressApparent);
+            proj = projs.First();
+            projs.TryRandomElementByWeight(x => x.CostApparent == proj.CostApparent ? 1f : 0f, out proj);
+
             SoundDefOf.ResearchStart.PlayOneShotOnCamera(null);
             researchManager.SetCurrentProject(proj);
             Thing thing = studiedThing;
