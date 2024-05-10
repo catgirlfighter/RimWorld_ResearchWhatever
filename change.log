@@ -1,4 +1,7 @@
-﻿1.1.4
+﻿1.1.5
+- fixed studiable objects would toggle off even if there is still something to study in their specific journal;
+
+1.1.4
 - studiable objects now also auto-toggle off;
 
 1.1.3
