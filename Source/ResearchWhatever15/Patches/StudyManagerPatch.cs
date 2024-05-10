@@ -3,6 +3,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace ResearchWhatever.Patches
     [HarmonyPatch(typeof(StudyManager), "StudyAnomaly")]
     static class StudyManager_StudyAnomaly_ResearchWhateverPatch
     {
+        private static readonly PropertyInfo LStudyCompleted = AccessTools.Property(typeof(ITab_StudyNotes), "StudyCompleted");
         internal static void Prefix(Thing studiedThing, Pawn studier, float knowledgeAmount, KnowledgeCategoryDef knowledgeCategory)
         {
             if (!ModsConfig.AnomalyActive)
@@ -47,11 +49,23 @@ namespace ResearchWhatever.Patches
                 CompHoldingPlatformTarget compHoldingPlatformTarget = studiedThing.TryGetComp<CompHoldingPlatformTarget>();
 
                 bool b = false;
-                if (compStudiable != null && compStudiable.Completed)
-                {
-                    compStudiable.studyEnabled = false;
-                    b = true;
-                }
+                if (compStudiable != null)
+                    if (compStudiable.Completed)
+                    {
+                        compStudiable.studyEnabled = false;
+                        b = true; 
+                    }
+                    else
+                    {
+                        if (studiedThing.GetInspectTabs().FirstOrDefault(
+                                x => x is ITab_StudyNotes 
+                                || x.GetType().IsSubclassOf(typeof(ITab_StudyNotes))) is ITab_StudyNotes tab 
+                            && (bool)LStudyCompleted.GetValue(tab))
+                        {
+                            compStudiable.studyEnabled = false;
+                            b = true;
+                        }
+                    }
                 //
                 if (compHoldingPlatformTarget != null)
                 {

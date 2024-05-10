@@ -1,4 +1,7 @@
-﻿1.1.3
+﻿1.1.4
+- studiable objects now also auto-toggle off;
+
+1.1.3
 - mod now automatically picks CHEAPEST anomaly research;
 - if anomly is fully studied and nothing left to research, study will be automatically toggled off;
 - cheapest project now takes into account already made progress;
