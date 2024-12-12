@@ -1,4 +1,7 @@
-﻿1.1.5
+﻿1.1.6
+- fixed murdersphere study getting canceled prematurely;
+
+1.1.5
 - fixed studiable objects would toggle off even if there is still something to study in their specific journal;
 
 1.1.4

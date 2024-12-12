@@ -45,7 +45,7 @@ namespace ResearchWhatever.Patches
 
             if (projs.NullOrEmpty())
             {
-                CompStudiable compStudiable = studiedThing.TryGetComp<CompStudiable>();
+                var compStudiable = studiedThing.TryGetComp<CompStudiable>();
                 CompHoldingPlatformTarget compHoldingPlatformTarget = studiedThing.TryGetComp<CompHoldingPlatformTarget>();
                 bool b = false;
                 if (compStudiable != null)
@@ -69,13 +69,13 @@ namespace ResearchWhatever.Patches
                         }
                     }
                 //
-                if (compHoldingPlatformTarget != null)
-                {
-                    compHoldingPlatformTarget.containmentMode = EntityContainmentMode.MaintainOnly;
-                    b = b || compStudiable != null;
-                }
 
-                if (b) Messages.Message("ResearchWhateverNothingLeftToResearch".Translate(studiedThing.Label).CapitalizeFirst(), new TargetInfo(studiedThing.PositionHeld, studiedThing.MapHeld, false), MessageTypeDefOf.NeutralEvent);
+
+                if (b)
+                {
+                    if (compHoldingPlatformTarget?.containmentMode == EntityContainmentMode.Study) compHoldingPlatformTarget.containmentMode = EntityContainmentMode.MaintainOnly;
+                    Messages.Message("ResearchWhateverNothingLeftToResearch".Translate(studiedThing.Label).CapitalizeFirst(), new TargetInfo(studiedThing.PositionHeld, studiedThing.MapHeld, false), MessageTypeDefOf.NeutralEvent);
+                }
 
                 return;
             }
