@@ -1,4 +1,7 @@
-﻿1.2.0
+﻿1.2.1
+- fixed a problem when entities wouldn't be removed from study when nothing left do study;
+
+1.2.0
 - 1.6;
 
 1.1.6

@@ -49,6 +49,7 @@ namespace ResearchWhatever.Patches
                 CompHoldingPlatformTarget compHoldingPlatformTarget = studiedThing.TryGetComp<CompHoldingPlatformTarget>();
                 bool b = false;
                 if (compStudiable != null)
+                {
                     if (compStudiable.Props.Completable)
                         if (compStudiable.Completed)
                         {
@@ -59,17 +60,13 @@ namespace ResearchWhatever.Patches
                     else
                     {
                         var compStudyUnlocks = studiedThing.TryGetComp<CompStudyUnlocks>();
-                        if (compStudyUnlocks != null)
+                        if (compStudyUnlocks == null || compStudyUnlocks.Completed)
                         {
-                            if (compStudyUnlocks.Completed)
-                            {
-                                compStudiable.studyEnabled = false;
-                                b = true;
-                            }
+                            compStudiable.studyEnabled = false;
+                            b = true;
                         }
                     }
-                //
-
+                }
 
                 if (b)
                 {
