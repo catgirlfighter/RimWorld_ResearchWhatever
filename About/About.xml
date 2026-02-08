@@ -17,6 +17,9 @@
 			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 		</li>
 	</modDependencies>
+	<loadAfter>
+		<li>vanillaexpanded.gravship</li>
+	</loadAfter>
 	<loadBefore>
 		<li>PeteTimesSix.ResearchReinvented</li>
 	</loadBefore>

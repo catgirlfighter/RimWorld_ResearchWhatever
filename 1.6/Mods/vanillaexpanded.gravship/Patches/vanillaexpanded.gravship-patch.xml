@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="BasicGravtech"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion"><ignore>true</ignore></li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="StandardGravtech"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="AdvancedGravtech"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_GravshipWeaponry"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_CompactWorkspaces"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_OxygenNetwork"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_AstrofuelRefining"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_GravshipPower"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_HeatDissipation"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="VGE_GravshipLiving"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+</Patch>
