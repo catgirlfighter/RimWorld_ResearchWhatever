@@ -1,4 +1,7 @@
-﻿1.2.2
+﻿1.2.3
+- added compatibility with Vanilla Gravship Expanded, credit goes to @vixfwis.
+
+1.2.2
 - yet another rearrangement of logic to address issues with studies switching off when it shouldn't... This time it's unnatural corpse. So many ways to do the same thing yet each one has to be checked individually, that's so scuffed...
 
 1.2.1
