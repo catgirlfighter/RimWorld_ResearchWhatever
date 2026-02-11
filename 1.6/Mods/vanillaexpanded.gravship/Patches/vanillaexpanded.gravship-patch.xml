@@ -25,6 +25,14 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ResearchProjectDef[defName="OrbitalTech"]</xpath>
+				<value>
+					<li Class="ResearchWhatever.ResearchWhateverExtansion">
+						<ignore>true</ignore>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ResearchProjectDef[defName="VGE_GravshipWeaponry"]</xpath>
 				<value>
 					<li Class="ResearchWhatever.ResearchWhateverExtansion">
