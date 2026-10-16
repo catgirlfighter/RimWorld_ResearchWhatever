@@ -1,4 +1,7 @@
-﻿1.2.4
+﻿1.2.5
+- supposedly fixed a bug because of which imprisoned entities would be unstudiable if auto-switched to "no study".
+
+1.2.4
 - updated compatibility with Vanilla Gravship Expanded. One gravtech got missed. Credit goes to @vixfwis.
 
 1.2.3
